@@ -1,69 +1,52 @@
-import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
+
+const foundationRows = [
+  ["Identité", "Dossier vivant", "Maison calme / Desk opératoire"],
+  ["Couleur", "Tokens stricts", "Lime = action · Cobalt = donnée"],
+  ["Rythme", "Une décision", "Pas de grille de KPI décorative"],
+  ["Données", "Démonstration", "Historique réel à brancher au Bloc 9"],
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="public-canvas">
+      <SiteHeader />
+      <section className="public-hero shell">
+        <div className="hero-rail"><span>00</span><i /><span>fondations</span></div>
+        <div className="public-hero-copy">
+          <p className="kicker"><b /> Vendevia / nouveau produit</p>
+          <h1>Le pipeline vendeur<br /><em>en mouvement.</em></h1>
+          <p className="hero-lede">Une même promesse. Deux expériences pensées pour deux réalités : comprendre son projet côté propriétaire, décider vite côté agence.</p>
+          <div className="hero-note"><span>Bloc 0 — socle validé</span><span className="note-rule" /><span>Mobile + desktop</span></div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <aside className="hero-index"><span>V / 00</span><strong>2</strong><p>mondes<br />coordonnés</p></aside>
+      </section>
+
+      <section className="worlds shell" aria-labelledby="worlds-title">
+        <div className="section-intro"><p className="kicker">01 / Deux entrées, pas une interface clonée</p><h2 id="worlds-title">À qui parle-t-on<br /><em>ici, maintenant ?</em></h2></div>
+        <div className="worlds-layout">
+          <Link className="world-entry maison-entry" href="/maison">
+            <div className="entry-top"><span className="entry-number">01</span><span className="entry-audience">propriétaires vendeurs</span></div>
+            <div className="entry-body"><span className="entry-overline">Vendevia Maison</span><h3>Un dossier personnel<br /><em>pour avancer sans pression.</em></h3><p>Comprendre son bien, son rythme et ses prochaines étapes sans être capturé par un formulaire.</p></div>
+            <div className="entry-bottom"><span>Voir le socle Maison</span><span className="arrow">↗</span></div>
+          </Link>
+          <Link className="world-entry desk-entry" href="/desk">
+            <div className="entry-top"><span className="entry-number">02</span><span className="entry-audience">agences immobilières</span></div>
+            <div className="entry-body"><span className="entry-overline">Vendevia Desk</span><h3>Une salle de pilotage<br /><em>qui sait quoi faire.</em></h3><p>Prioriser les opportunités, ouvrir le bon dossier et relier chaque action au mandat.</p></div>
+            <div className="entry-bottom"><span>Voir le socle Desk</span><span className="arrow">↗</span></div>
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="foundation shell" aria-labelledby="foundation-title">
+        <div className="foundation-heading"><p className="kicker">02 / Règles de construction</p><h2 id="foundation-title">Une signature avant<br /><em>une accumulation.</em></h2><p>Les éléments ci-dessous sont les garde-fous du nouveau produit. Ils remplacent les conventions d’un SaaS générique.</p></div>
+        <div className="foundation-table" role="table" aria-label="Fondations du design Vendevia">
+          {foundationRows.map(([label, value, detail]) => <div className="foundation-row" role="row" key={label}><span role="cell">{label}</span><strong role="cell">{value}</strong><span role="cell">{detail}</span></div>)}
+        </div>
+      </section>
+
+      <footer className="public-footer shell"><span>Vendevia / Prototype indépendant</span><span>Bloc suivant : entrée propriétaire</span></footer>
+    </main>
   );
 }

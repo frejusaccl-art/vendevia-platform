@@ -17,7 +17,7 @@ export function SiteHeader({ active = "home" }: { active?: Active }) {
         <Link className={active === "maison" ? "nav-item is-active maison-link" : "nav-item maison-link"} href="/maison">Maison</Link>
         <Link className={active === "desk" ? "nav-item is-active desk-link" : "nav-item desk-link"} href="/desk">Desk</Link>
       </nav>
-      <div className="header-state"><span className="state-dot" /> Prototype Bloc 0</div>
+      <div className="header-state"><span className="state-dot" /> Dossier vivant</div>
     </header>
   );
 }

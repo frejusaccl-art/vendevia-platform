@@ -363,3 +363,38 @@ h1 em, h2 em, h3 em { color: #747981; font-style: normal; font-weight: 400; }
   .address-map-visual { margin-top: 42px; }
   .property-notation { margin-top: 43px; }
 }
+
+
+/* Étape 4 — le rythme devient un élément de produit, pas une préférence cachée */
+.rhythm-orbit { height: 210px; margin-top: 46px; max-width: 390px; position: relative; }
+.orbit-ring { border: 1px solid rgba(216,117,92,.55); border-radius: 50%; display: block; left: 22%; position: absolute; top: 10%; }
+.orbit-ring-one { height: 150px; transform: rotate(18deg) scaleX(1.25); width: 150px; }
+.orbit-ring-two { border-color: rgba(32,36,43,.25); height: 112px; left: 28%; top: 18%; transform: rotate(-33deg) scaleX(1.5); width: 112px; }
+.orbit-core { align-items: center; background: var(--signal-lime); border: 1px solid var(--ink); border-radius: 50%; display: flex; font-family: var(--mono); font-size: 9px; height: 63px; justify-content: center; left: 39%; line-height: 1.3; position: absolute; text-align: center; text-transform: uppercase; top: 30%; transform: rotate(-8deg); width: 63px; }
+.orbit-note { color: #777a80; font-family: var(--mono); font-size: 8px; position: absolute; text-transform: uppercase; }
+.orbit-note-one { left: 0; top: 25%; }
+.orbit-note-two { bottom: 18%; right: 2%; }
+.rhythm-options { display: grid; gap: 8px; }
+.rhythm-option { align-items: center; background: var(--ivory); border: 1px solid transparent; color: var(--ink); cursor: pointer; display: grid; gap: 12px; grid-template-columns: 28px 1fr 17px; padding: 15px 13px; text-align: left; transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
+.rhythm-option:hover { border-color: var(--terracotta); transform: translateX(3px); }
+.rhythm-option.is-selected { background: #f4e9df; border-color: var(--terracotta); }
+.rhythm-marker { color: var(--terracotta); font-family: var(--mono); font-size: 10px; }
+.rhythm-option strong, .rhythm-option small { display: block; }
+.rhythm-option strong { font-family: var(--sans); font-size: 13px; letter-spacing: -.03em; }
+.rhythm-option small { color: #777a80; font-size: 10px; line-height: 1.4; margin-top: 4px; }
+.rhythm-form .form-submit:disabled { cursor: not-allowed; filter: grayscale(.5); opacity: .5; }
+.rhythm-success h2 { font-size: 39px; }
+.motion-ready .orbit-ring-one { animation: orbit-breathe 7s ease-in-out infinite; }
+.motion-ready .orbit-ring-two { animation: orbit-breathe 9s 700ms ease-in-out infinite reverse; }
+.motion-ready .orbit-core { animation: core-float 5s ease-in-out infinite; }
+@keyframes orbit-breathe { 0%, 100% { opacity: .5; transform: rotate(18deg) scaleX(1.25) scale(1); } 50% { opacity: .95; transform: rotate(24deg) scaleX(1.25) scale(1.05); } }
+@keyframes core-float { 0%, 100% { transform: rotate(-8deg) translateY(0); } 50% { transform: rotate(-3deg) translateY(-7px); } }
+@media (max-width: 660px) {
+  .rhythm-orbit { height: 175px; margin-top: 35px; }
+  .orbit-ring-one { height: 126px; width: 126px; }
+  .orbit-ring-two { height: 96px; width: 96px; }
+  .orbit-core { height: 57px; left: 39%; top: 28%; width: 57px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .orbit-ring-one, .motion-ready .orbit-ring-two, .motion-ready .orbit-core { animation: none; }
+}

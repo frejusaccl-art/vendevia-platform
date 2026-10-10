@@ -320,3 +320,46 @@ h1 em, h2 em, h3 em { color: #747981; font-style: normal; font-weight: 400; }
   .motion-ready .motion-reveal, .motion-ready .maison-trust, .motion-ready .maison-reassurance { animation: none; }
   .motion-ready .dossier-stub-large:hover, .motion-ready .world-entry:hover, .motion-ready .desk-sheet:hover, .motion-ready .pipeline-preview:hover { transform: none; }
 }
+
+
+/* Étapes 2–3 — le contexte arrive par touches, jamais par formulaire massif */
+.address-map-visual { border-bottom: 1px solid var(--line-dark); height: 154px; margin-top: 51px; overflow: hidden; position: relative; }
+.map-line { background: var(--terracotta); display: block; height: 1px; opacity: .7; position: absolute; transform: rotate(-17deg); transform-origin: left; width: 250px; }
+.map-line-a { left: 6%; top: 64%; }
+.map-line-b { left: 32%; top: 28%; transform: rotate(21deg); width: 210px; }
+.map-line-c { left: 54%; top: 82%; transform: rotate(-48deg); width: 180px; }
+.map-pin { align-items: center; background: var(--signal-lime); border: 1px solid var(--ink); border-radius: 50%; display: flex; font-size: 20px; height: 38px; justify-content: center; left: 42%; position: absolute; top: 45%; transform: rotate(-8deg); width: 38px; }
+.map-label, .map-street { color: #777a80; font-family: var(--mono); font-size: 8px; position: absolute; text-transform: uppercase; }
+.map-label { left: 51%; top: 43%; }
+.map-street { bottom: 20px; left: 7%; }
+.address-form .field-label { color: #777a80; display: block; font-family: var(--mono); font-size: 9px; margin: 19px 0 7px; text-transform: uppercase; }
+.address-input-wrap { align-items: center; background: var(--ivory); border: 1px solid transparent; display: flex; gap: 9px; padding: 0 13px; transition: border-color 180ms ease; }
+.address-input-wrap:focus-within, .plain-input:focus { border-color: var(--terracotta); outline: none; }
+.address-input-wrap span { color: var(--terracotta); font-size: 17px; }
+.address-input-wrap input, .plain-input { background: transparent; border: 0; color: var(--ink); font-family: var(--body); font-size: 13px; min-height: 47px; outline: none; width: 100%; }
+.address-input-wrap input::placeholder, .plain-input::placeholder { color: #a5a7a2; }
+.plain-input { background: var(--ivory); border: 1px solid transparent; padding: 0 13px; transition: border-color 180ms ease; }
+.address-success h2 { font-size: 34px; }
+.address-confirmation { background: var(--ivory); border-left: 2px solid var(--terracotta); display: grid; gap: 4px; grid-template-columns: 25px 1fr; margin: 25px 0 15px; padding: 15px; }
+.address-confirmation span { color: var(--terracotta); grid-row: span 2; }
+.address-confirmation strong { font-family: var(--sans); font-size: 14px; letter-spacing: -.03em; }
+.address-confirmation small { color: #777a80; font-family: var(--mono); font-size: 9px; text-transform: uppercase; }
+.property-notation { align-items: center; border-top: 1px solid var(--line-dark); display: flex; gap: 15px; margin-top: 62px; max-width: 330px; padding-top: 15px; }
+.notation-number { color: var(--terracotta); font-family: var(--sans); font-size: 30px; letter-spacing: -.08em; }
+.notation-line { background: var(--terracotta); height: 1px; width: 58px; }
+.notation-copy { color: #777a80; font-family: var(--mono); font-size: 8px; line-height: 1.5; text-transform: uppercase; }
+.property-options { display: grid; gap: 8px; }
+.property-option { align-items: center; background: var(--ivory); border: 1px solid transparent; color: var(--ink); cursor: pointer; display: grid; gap: 12px; grid-template-columns: 30px 1fr 17px; padding: 13px; text-align: left; transition: border-color 180ms ease, transform 180ms ease, background 180ms ease; }
+.property-option:hover { border-color: var(--terracotta); transform: translateX(3px); }
+.property-option.is-selected { background: #f4e9df; border-color: var(--terracotta); }
+.property-glyph { align-items: center; border: 1px solid #b2b3ad; border-radius: 50%; color: var(--terracotta); display: flex; font-size: 16px; height: 25px; justify-content: center; width: 25px; }
+.property-option strong, .property-option small { display: block; }
+.property-option strong { font-family: var(--sans); font-size: 13px; letter-spacing: -.03em; }
+.property-option small { color: #777a80; font-size: 10px; line-height: 1.35; margin-top: 3px; }
+.property-option.is-selected .property-glyph { background: var(--signal-lime); border-color: var(--ink); }
+.property-form .form-submit:disabled { cursor: not-allowed; filter: grayscale(.5); opacity: .5; }
+.property-success h2 { font-size: 36px; }
+@media (max-width: 660px) {
+  .address-map-visual { margin-top: 42px; }
+  .property-notation { margin-top: 43px; }
+}

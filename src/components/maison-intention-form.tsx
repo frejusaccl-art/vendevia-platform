@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const intentions = [
@@ -31,6 +32,7 @@ export function MaisonIntentionForm() {
         <p className="form-label">Étape 01 / enregistrée</p>
         <h2>Votre point de départ est posé.</h2>
         <p>Nous allons maintenant regarder le bien et son contexte. Vous pourrez toujours revenir en arrière.</p>
+        <Link className="lime-button form-submit" href="/maison/projet/adresse">Continuer vers le bien <span>↗</span></Link>
         <button className="outline-button" onClick={() => setStatus("empty")}>Modifier ma réponse <span>↺</span></button>
       </div>
     );

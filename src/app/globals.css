@@ -288,3 +288,35 @@ h1 em, h2 em, h3 em { color: #747981; font-style: normal; font-weight: 400; }
   .intention-option { padding: 13px 11px; }
   .success-state { min-height: 390px; }
 }
+
+
+/* Direction de mouvement — Bloc 1+ : l'interface avance comme un dossier, pas comme une démo */
+:root { --pointer-x: 50vw; --pointer-y: 32vh; }
+.motion-ready body::after { background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(216,255,98,.08), transparent 18rem); content: ""; inset: 0; pointer-events: none; position: fixed; z-index: 20; }
+.motion-reveal { opacity: 1; transform: none; }
+.motion-ready .motion-reveal { animation: dossier-enter 760ms cubic-bezier(.2,.7,.2,1) both; }
+.motion-ready .motion-delay-1 { animation-delay: 110ms; }
+.motion-ready .motion-delay-2 { animation-delay: 220ms; }
+.motion-ready .maison-trust { animation: line-draw 720ms 420ms cubic-bezier(.2,.7,.2,1) both; transform-origin: top; }
+.motion-ready .maison-reassurance { animation: paper-rise 900ms 350ms cubic-bezier(.2,.7,.2,1) both; }
+.motion-ready .dossier-stub-large { transform-style: preserve-3d; transition: transform 420ms cubic-bezier(.2,.7,.2,1), box-shadow 420ms ease; }
+.motion-ready .dossier-stub-large:hover { box-shadow: 20px 20px 0 rgba(228,213,196,.8); transform: perspective(900px) rotateY(-2deg) rotateX(1deg) translateY(-4px); }
+.motion-ready .world-entry, .motion-ready .desk-sheet, .motion-ready .pipeline-preview { transition: transform 300ms cubic-bezier(.2,.7,.2,1), box-shadow 300ms ease; }
+.motion-ready .world-entry:hover { transform: translate(-5px,-5px) rotate(-.2deg); }
+.motion-ready .desk-sheet:hover, .motion-ready .pipeline-preview:hover { box-shadow: 8px 8px 0 rgba(216,255,98,.16); transform: translateY(-4px); }
+.motion-ready .queue-item { transition: background 220ms ease, padding-left 220ms ease; }
+.motion-ready .queue-item:hover { background: rgba(247,245,240,.05); padding-left: 8px; }
+.motion-ready .queue-action { transition: color 180ms ease, border-color 180ms ease; }
+.motion-ready .queue-action:hover { border-color: var(--white); color: var(--signal-lime); }
+.motion-ready .lime-button { box-shadow: 0 0 0 rgba(216,255,98,0); transition: box-shadow 240ms ease, transform 220ms cubic-bezier(.2,.7,.2,1); }
+.motion-ready .lime-button:hover { box-shadow: 0 9px 0 rgba(32,36,43,.18); transform: translateY(-3px); }
+.motion-ready .intention-option { will-change: transform; }
+.motion-ready .intention-option:active { transform: translateX(3px) scale(.988); }
+@keyframes dossier-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes line-draw { from { opacity: 0; transform: scaleY(0); } to { opacity: 1; transform: scaleY(1); } }
+@keyframes paper-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready body::after { display: none; }
+  .motion-ready .motion-reveal, .motion-ready .maison-trust, .motion-ready .maison-reassurance { animation: none; }
+  .motion-ready .dossier-stub-large:hover, .motion-ready .world-entry:hover, .motion-ready .desk-sheet:hover, .motion-ready .pipeline-preview:hover { transform: none; }
+}

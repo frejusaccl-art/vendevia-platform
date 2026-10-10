@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { MotionDirector } from "@/components/motion-director";
 
 export const metadata: Metadata = {
   title: "Vendevia — Le pipeline vendeur en mouvement",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body><MotionDirector />{children}</body>
     </html>
   );
 }

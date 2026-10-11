@@ -482,3 +482,34 @@ h1 em, h2 em, h3 em { color: #747981; font-style: normal; font-weight: 400; }
   .summary-score strong { font-size: 55px; }
 }
 @media (prefers-reduced-motion: reduce) { .motion-ready .clarity-bar span { animation: none; } }
+
+
+/* Étape 6 — la relation est choisie, visible et réversible */
+.contact-principles { border-top: 1px solid var(--line-dark); display: grid; gap: 10px; margin-top: 57px; max-width: 340px; padding-top: 14px; }
+.contact-principles span { color: #777a80; font-family: var(--mono); font-size: 9px; text-transform: uppercase; }
+.contact-principles b { color: var(--terracotta); font-weight: 400; margin-right: 10px; }
+.contact-mode-options { display: grid; gap: 8px; }
+.contact-mode { align-items: center; background: var(--ivory); border: 1px solid transparent; color: var(--ink); cursor: pointer; display: grid; gap: 12px; grid-template-columns: 30px 1fr auto; padding: 14px; text-align: left; transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
+.contact-mode:hover { border-color: var(--terracotta); transform: translateX(3px); }
+.contact-mode.is-selected { background: #f4e9df; border-color: var(--terracotta); }
+.mode-symbol { align-items: center; border: 1px solid #b2b3ad; border-radius: 50%; color: var(--terracotta); display: flex; font-size: 16px; height: 25px; justify-content: center; width: 25px; }
+.contact-mode.is-selected .mode-symbol { background: var(--signal-lime); border-color: var(--ink); }
+.contact-mode strong, .contact-mode small { display: block; }
+.contact-mode strong { font-family: var(--sans); font-size: 13px; letter-spacing: -.03em; }
+.contact-mode small { color: #777a80; font-size: 10px; line-height: 1.4; margin-top: 4px; }
+.contact-mode em { color: #777a80; font-family: var(--mono); font-size: 8px; font-style: normal; text-transform: uppercase; }
+.contact-choice-form .form-submit:disabled { cursor: not-allowed; filter: grayscale(.5); opacity: .5; }
+.transmission-preview { border-top: 1px solid var(--mist); margin-top: 22px; padding-top: 16px; }
+.transmission-preview > div { display: flex; flex-wrap: wrap; gap: 8px 13px; margin-top: 12px; }
+.transmission-preview > div span { color: #777a80; font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+.transmission-preview > div span::first-letter { color: var(--terracotta); }
+.transmission-receipt { background: var(--ivory); border-left: 2px solid var(--terracotta); display: grid; gap: 6px; margin-top: 22px; padding: 16px; }
+.transmission-receipt span, .transmission-receipt small { color: #777a80; font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+.transmission-receipt strong { font-family: var(--sans); font-size: 15px; letter-spacing: -.04em; }
+.contact-confirmation a { color: var(--ink); display: block; font-family: var(--mono); font-size: 8px; margin-top: 10px; text-decoration: underline; text-transform: uppercase; }
+.contact-choice-success h2 { font-size: 37px; }
+@media (max-width: 660px) {
+  .contact-principles { margin-top: 42px; }
+  .contact-mode { grid-template-columns: 28px 1fr; }
+  .contact-mode em { grid-column: 2; margin-top: -5px; }
+}

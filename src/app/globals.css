@@ -398,3 +398,43 @@ h1 em, h2 em, h3 em { color: #747981; font-style: normal; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
   .motion-ready .orbit-ring-one, .motion-ready .orbit-ring-two, .motion-ready .orbit-core { animation: none; }
 }
+
+
+/* Desk — de la donnée à la décision, sans tableau de bord décoratif */
+.desk-metrics { border-bottom: 1px solid var(--line-light); display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); padding: 29px 0 35px; }
+.desk-metric { border: 1px solid var(--line-light); min-height: 154px; overflow: hidden; padding: 18px; position: relative; }
+.desk-metric strong { display: block; font-family: var(--sans); font-size: 44px; letter-spacing: -.1em; line-height: .95; margin-top: 27px; }
+.desk-metric small { color: #aeb2b7; display: block; font-family: var(--mono); font-size: 9px; margin-top: 9px; text-transform: uppercase; }
+.desk-metric i { background: var(--signal-lime); bottom: 0; display: block; height: 3px; left: 0; position: absolute; transition: width 700ms cubic-bezier(.2,.7,.2,1); width: 56%; }
+.desk-metric.cobalt i { background: var(--cobalt); width: 38%; }
+.desk-metric.terra i { background: var(--terracotta); width: 72%; }
+.motion-ready .desk-metric i { animation: metric-grow 900ms 480ms both cubic-bezier(.2,.7,.2,1); transform-origin: left; }
+@keyframes metric-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.queue-owner { color: #8f949a; font-family: var(--mono); font-size: 9px; text-transform: uppercase; }
+.start-checklist { border-top: 1px solid var(--line-light); margin-top: 55px; padding: 48px 0 12px; }
+.checklist-head { align-items: end; display: flex; justify-content: space-between; }
+.checklist-head h2 { font-family: var(--sans); font-size: 35px; letter-spacing: -.07em; margin: 13px 0 0; }
+.checklist-head .mono-label { color: #aeb2b7; }
+.checklist-progress { color: var(--signal-lime); font-family: var(--mono); font-size: 30px; }
+.checklist-track { background: rgba(247,245,240,.13); height: 2px; margin: 26px 0 0; overflow: hidden; }
+.checklist-track span { background: var(--signal-lime); display: block; height: 100%; transition: width 450ms cubic-bezier(.2,.7,.2,1); }
+.checklist-items { border-top: 1px solid var(--line-light); margin-top: 18px; }
+.checklist-item { align-items: center; background: transparent; border: 0; border-bottom: 1px solid var(--line-light); color: var(--ivory); cursor: pointer; display: grid; gap: 17px; grid-template-columns: 32px 1fr 18px; padding: 16px 0; text-align: left; width: 100%; }
+.checklist-item:hover { background: rgba(247,245,240,.04); }
+.checkmark { align-items: center; border: 1px solid #8f949a; border-radius: 50%; color: #aeb2b7; display: flex; font-family: var(--mono); font-size: 8px; height: 24px; justify-content: center; width: 24px; }
+.checklist-item.is-done .checkmark { background: var(--signal-lime); border-color: var(--signal-lime); color: var(--ink); }
+.checklist-item strong, .checklist-item small { display: block; }
+.checklist-item strong { font-family: var(--sans); font-size: 14px; letter-spacing: -.03em; }
+.checklist-item small { color: #aeb2b7; font-size: 11px; margin-top: 4px; }
+.check-arrow { color: var(--signal-lime); font-size: 16px; }
+.checklist-note { color: #8f949a; font-family: var(--mono); font-size: 9px; line-height: 1.5; margin: 22px 0 0; max-width: 350px; text-transform: uppercase; }
+@media (max-width: 760px) {
+  .desk-metrics { grid-template-columns: 1fr; }
+  .desk-metric { min-height: 126px; }
+  .desk-metric strong { margin-top: 19px; }
+  .queue-owner { grid-column: 2; margin-top: -2px; }
+  .checklist-head h2 { font-size: 29px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .desk-metric i { animation: none; }
+}

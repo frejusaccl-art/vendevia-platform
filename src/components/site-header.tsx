@@ -1,23 +1,35 @@
-import Link from "next/link";
-import { BrandMark } from "./brand-mark";
+"use client";
 
-type Active = "home" | "maison" | "desk" | "backoffice";
+import Link from "next/link";
+import { useState } from "react";
+import { BrandMark } from "./brand-mark";
+import { UiIcon } from "./ui-icon";
+
+type Active = "home" | "maison" | "agences" | "desk" | "backoffice" | "how" | "pricing";
+
+const links = [
+  { href: "/comment-ca-marche", label: "Notre méthode", key: "how" },
+  { href: "/agences", label: "Pour les agences", key: "agences" },
+  { href: "/tarifs", label: "Tarifs", key: "pricing" },
+] as const;
 
 export function SiteHeader({ active = "home" }: { active?: Active }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="site-header">
       <Link className="brand" href="/" aria-label="Vendevia, accueil">
         <BrandMark />
-        <span className="brand-copy">
-          <strong>vendevia</strong>
-          <small>le dossier vendeur en mouvement</small>
-        </span>
+        <span className="brand-copy"><strong>vendevia</strong><small>le projet vendeur, mieux suivi</small></span>
       </Link>
-      <nav className="public-nav" aria-label="Navigation principale">
-        <Link className={active === "maison" ? "nav-item is-active maison-link" : "nav-item maison-link"} href="/maison">Maison</Link>
-        <Link className={active === "desk" ? "nav-item is-active desk-link" : "nav-item desk-link"} href="/desk">Desk</Link>
+      <nav className={open ? "public-nav is-open" : "public-nav"} aria-label="Navigation principale">
+        {links.map((item) => <Link key={item.href} className={active === item.key ? "nav-item is-active" : "nav-item"} href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>)}
+        <Link className="nav-item nav-login" href="/connexion" onClick={() => setOpen(false)}>Connexion</Link>
+        <Link className="header-cta" href="/maison" onClick={() => setOpen(false)}>Faire le point <UiIcon name="arrow" size={16} /></Link>
       </nav>
-      <div className="header-state"><span className="state-dot" /> Dossier vivant</div>
+      <button className="mobile-menu-toggle" type="button" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+        <UiIcon name={open ? "close" : "menu"} size={21} />
+      </button>
     </header>
   );
 }

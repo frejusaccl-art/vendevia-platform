@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppShell, type SideItem, type TabItem } from "@/components/vv/app-shell";
+import { ReviewNudge } from "@/components/vv/reviews";
 
 export const metadata: Metadata = {
   title: "Espace agence — Vendevia",
@@ -82,6 +83,8 @@ export default function AgencyPage() {
             </div>
           ))}
         </div>
+
+        <ReviewNudge role="agence" />
 
         <div className="vv-panels">
           <section aria-labelledby="leads-title" className="vv-panel" id="leads">

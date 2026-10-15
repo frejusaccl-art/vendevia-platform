@@ -3,6 +3,7 @@ import Link from "next/link";
 import { VvFooter, VvHeader } from "@/components/vv/chrome";
 import { Icon } from "@/components/vv/icons";
 import { ProtectBanner } from "@/components/vv/protect-banner";
+import { HomeReviews } from "@/components/vv/reviews";
 import { Scene } from "@/components/vv/scenes";
 
 export const metadata: Metadata = {
@@ -16,12 +17,6 @@ const steps = [
   { icon: "handshake", title: "2. Votre demande est qualifiée", text: "Nous la transmettons aux agences les mieux adaptées à votre profil." },
   { icon: "user", title: "3. Vous êtes accompagné", text: "Vous êtes informé à chaque étape, jusqu’à la concrétisation." },
 ] as const;
-
-const quotes = [
-  { name: "Sophie L.", role: "Propriétaire", initials: "SL", text: "Service très professionnel, j’ai trouvé une agence en moins d’une semaine." },
-  { name: "Thomas D.", role: "Agence immobilière", initials: "TD", text: "Des leads de qualité et un suivi impeccable. Vendevia fait vraiment la différence." },
-  { name: "Julie N.", role: "Propriétaire", initials: "JN", text: "Très simple d’utilisation et un vrai accompagnement. Je recommande." },
-];
 
 export default function HomePage() {
   return (
@@ -102,27 +97,7 @@ export default function HomePage() {
         <ProtectBanner />
       </section>
 
-      <section aria-labelledby="quotes-title" className="vv-section">
-        <h2 className="vv-section-title" id="quotes-title">Ils nous font confiance</h2>
-        <p className="vv-note">Exemples de témoignages à remplacer par de vrais avis avant la mise en ligne.</p>
-        <div className="vv-quotes">
-          {quotes.map((quote) => (
-            <figure className="vv-quote" key={quote.name}>
-              <div className="mark" aria-hidden="true">“</div>
-              <blockquote style={{ margin: 0 }}>
-                <p>{quote.text}</p>
-              </blockquote>
-              <figcaption className="vv-person">
-                <span className="vv-avatar">{quote.initials}</span>
-                <div>
-                  <strong>{quote.name}</strong>
-                  <span>{quote.role}</span>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      <HomeReviews />
 
       <VvFooter withBanner />
     </main>

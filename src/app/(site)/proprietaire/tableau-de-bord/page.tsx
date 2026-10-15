@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AppShell, type SideItem, type TabItem } from "@/components/vv/app-shell";
 import { Icon } from "@/components/vv/icons";
+import { ReviewNudge } from "@/components/vv/reviews";
 
 export const metadata: Metadata = {
   title: "Mon espace — Vendevia",
@@ -60,6 +61,8 @@ export default function OwnerDashboardPage() {
             ))}
           </ol>
         </section>
+
+        <ReviewNudge role="proprietaire" />
 
         <div className="vv-owner-grid">
           <section aria-labelledby="projet-title" className="vv-panel" id="projet">

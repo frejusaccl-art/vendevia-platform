@@ -28,7 +28,7 @@ export default function PricingPage() {
 
       <section aria-label="Offres à l’unité" className="vv-wrap">
         <div className="vv-plans">
-          {offers.map((offer) => (
+          {offers.map((offer, idx) => (
             <article className={`vv-plan${offer.featured ? " vv-plan--featured" : ""}`} key={offer.name}>
               {offer.featured && <span className="vv-tag">Le plus choisi</span>}
               <h3>{offer.name}</h3>
@@ -38,18 +38,18 @@ export default function PricingPage() {
                   <li key={f}><Icon name="check" size={15} /> {f}</li>
                 ))}
               </ul>
-              <Link className="vv-btn vv-btn--primary" href="/connexion">Acheter</Link>
+              <Link className="vv-btn vv-btn--primary" href={`/agence/acheter?produit=offre-${idx}`}>Acheter</Link>
             </article>
           ))}
         </div>
 
         <div className="vv-plans" role="list" aria-label="Packs de crédits">
-          {packs.map((pack) => (
+          {packs.map((pack, idx) => (
             <article className="vv-plan" key={pack.name} role="listitem">
               <h3>{pack.name}</h3>
               <p className="price">{pack.price}&nbsp;€ HT <small>→ {pack.credits}&nbsp;crédits</small></p>
               <span className="vv-tag">{pack.bonus}&nbsp;crédits offerts · {pack.saving}&nbsp;% d’économie</span>
-              <Link className="vv-btn vv-btn--primary" href="/connexion">Acheter</Link>
+              <Link className="vv-btn vv-btn--primary" href={`/agence/acheter?produit=pack-${idx}`}>Acheter</Link>
             </article>
           ))}
         </div>

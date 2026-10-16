@@ -6,7 +6,11 @@ export type LegalPage = { title: string; intro?: string; sections: LegalSection[
 
 export const LEGAL_UPDATED = "Version du 16 octobre 2026";
 
-const id = `${C.name}, ${C.legalForm} au capital de ${C.capital}, immatriculée au RCS de ${C.rcs} sous le numéro ${C.siren}, dont le siège social est situé ${C.address} (ci-après « ${BRAND} »)`;
+const has = (v: string) => v.trim().length > 0;
+const rcsPart = has(C.siren) ? `, immatriculée${has(C.rcs) ? ` au RCS de ${C.rcs}` : " au RCS"} sous le numéro ${C.siren}` : "";
+const seat = has(C.address) ? `, dont le siège social est situé ${C.address}` : "";
+const id = `${C.name}, ${C.legalForm} au capital de ${C.capital}${rcsPart}${seat} (ci-après « ${BRAND} »)`;
+const compact = (list: (string | false)[]) => list.filter((x): x is string => Boolean(x));
 
 export const legalPages: Record<string, LegalPage> = {
   "mentions-legales": {
@@ -14,13 +18,13 @@ export const legalPages: Record<string, LegalPage> = {
     intro: `Informations d’identification de l’éditeur du site ${BRAND}, conformément à l’article 1-1 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique (LCEN).`,
     legal: true,
     sections: [
-      { title: "Éditeur du site", body: [`${id}.`, `N° de TVA intracommunautaire : ${C.vat}.`, `Contact : ${C.email} · ${C.phone}.`, `Directeur de la publication : ${C.director}.`] },
-      { title: "Hébergement", body: [`Le site est hébergé par : ${C.host}.`] },
+      { title: "Éditeur du site", body: compact([`${id}.`, has(C.vat) && `N° de TVA intracommunautaire : ${C.vat}.`, `Contact : ${C.email}${has(C.phone) ? ` · ${C.phone}` : ""}.`, `Directeur de la publication : ${C.director}.`]) },
+      ...(has(C.host) ? [{ title: "Hébergement", body: [`Le site est hébergé par : ${C.host}.`] }] : []),
       { title: "Nature du service", body: [`${BRAND} est une plateforme logicielle (SaaS) de mise en relation entre des propriétaires qui envisagent de vendre un bien et des agences immobilières. ${BRAND} n’est pas une agence immobilière : elle ne négocie pas, ne reçoit aucun mandat, ne détient aucun fonds pour le compte de tiers et n’est pas rémunérée en fonction de la conclusion d’une vente.`] },
       { title: "Propriété intellectuelle", body: [`La marque, le logo, les textes, l’interface, les bases de données et le code du site sont protégés par le Code de la propriété intellectuelle. Toute reproduction, représentation ou extraction non autorisée est interdite.`] },
       { title: "Responsabilité et liens", body: [`${BRAND} s’efforce de fournir des informations exactes et à jour, sans garantir l’absence d’erreur ou d’interruption du service. Les liens vers des sites tiers n’engagent pas la responsabilité de ${BRAND} quant à leur contenu.`] },
       { title: "Données personnelles et cookies", body: [`Le traitement des données personnelles est décrit dans la politique de confidentialité ; l’usage des traceurs dans la politique relative aux cookies.`] },
-      { title: "Médiation de la consommation", body: [`Pour tout litige de consommation non résolu après une réclamation écrite auprès de ${BRAND}, le consommateur peut recourir gratuitement au médiateur : ${C.mediator}.`] },
+      ...(has(C.mediator) ? [{ title: "Médiation de la consommation", body: [`Pour tout litige de consommation non résolu après une réclamation écrite auprès de ${BRAND}, le consommateur peut recourir gratuitement au médiateur : ${C.mediator}.`] }] : []),
       { title: "Droit applicable", body: ["Le site est soumis au droit français."] },
     ],
   },
@@ -101,7 +105,7 @@ export const legalPages: Record<string, LegalPage> = {
       ] },
       { title: "Disponibilité et responsabilité", body: ["Le service est fourni en l’état et peut être interrompu pour maintenance. Dans les limites permises par la loi, la responsabilité de Vendevia ne peut être engagée pour les décisions prises par les agences ou les propriétaires, ni pour des dommages indirects."] },
       { title: "Propriété intellectuelle", body: ["Le site et ses contenus restent la propriété de leurs titulaires. Vous conservez vos droits sur vos contenus et nous concédez le droit de les afficher aux fins du service (par exemple un avis publié)."] },
-      { title: "Modification, droit applicable, litiges", body: [`Nous pouvons modifier ces conditions ; la version en vigueur est celle affichée sur le site. Le droit français s’applique. En cas de litige, vous pouvez vous adresser à ${C.email}, puis, si vous êtes consommateur, au médiateur : ${C.mediator}. À défaut, les tribunaux compétents sont ceux déterminés par le Code de procédure civile.`] },
+      { title: "Modification, droit applicable, litiges", body: [`Nous pouvons modifier ces conditions ; la version en vigueur est celle affichée sur le site. Le droit français s’applique. En cas de litige, vous pouvez vous adresser à ${C.email}, puis, si vous êtes consommateur, ${has(C.mediator) ? `au médiateur : ${C.mediator}` : "à un médiateur de la consommation"}. À défaut, les tribunaux compétents sont ceux déterminés par le Code de procédure civile.`] },
     ],
   },
 
@@ -141,7 +145,7 @@ export const legalPages: Record<string, LegalPage> = {
       { title: "Responsabilité", body: ["La responsabilité de Vendevia est limitée aux dommages directs et plafonnée au montant hors taxes effectivement payé par l’Agence au cours des 12 derniers mois, sauf faute lourde ou dolosive. Aucune responsabilité n’est encourue pour les dommages indirects (perte de chiffre d’affaires, de clientèle, d’image)."] },
       { title: "Suspension et résiliation", body: ["Vendevia peut suspendre ou fermer un compte en cas de manquement grave (usage non conforme des données, absence de carte professionnelle valide, fraude), après mise en demeure restée sans effet sous 8 jours, sauf urgence. L’Agence peut fermer son compte à tout moment ; les crédits non utilisés restent soumis à la section « Validité et remboursement »."] },
       { title: "Force majeure", body: ["Aucune des parties n’est responsable d’un manquement dû à un événement de force majeure au sens de l’article 1218 du Code civil."] },
-      { title: "Droit applicable et tribunal compétent", body: [`Les présentes conditions sont soumises au droit français. À défaut de résolution amiable, tout litige relève de ${C.court}.`] },
+      { title: "Droit applicable et tribunal compétent", body: [`Les présentes conditions sont soumises au droit français. À défaut de résolution amiable, tout litige relève ${has(C.court) ? `de ${C.court}` : "du tribunal de commerce compétent"}.`] },
     ],
   },
 

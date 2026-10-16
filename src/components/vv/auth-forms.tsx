@@ -54,7 +54,7 @@ export function LoginForm() {
       <PasswordField autoComplete="current-password" error={errors.password} id="login-password" label="Mot de passe" onChange={setPassword} placeholder="Votre mot de passe" value={password} />
       <div className="vv-inline">
         <label className="vv-check"><input checked={remember} onChange={(e) => setRemember(e.target.checked)} type="checkbox" /> Se souvenir de moi</label>
-        <Link className="vv-link" href="/contact">Mot de passe oublié&nbsp;?</Link>
+        <Link className="vv-link" href="/mot-de-passe-oublie">Mot de passe oublié&nbsp;?</Link>
       </div>
       <button className="vv-btn vv-btn--primary vv-btn--block" type="submit">Se connecter <Icon name="arrow" size={16} /></button>
       <p className="vv-demo-note" style={{ marginTop: 16 }}>Version de démonstration : aucun compte réel n’est vérifié.</p>
@@ -100,16 +100,11 @@ export function SignupForm() {
       <div className="vv-field">
         <label className="vv-check">
           <input checked={terms} onChange={(e) => { setTerms(e.target.checked); setErrors((p) => ({ ...p, terms: "" })); }} type="checkbox" />
-          <span>J’accepte les <Link className="vv-link" href="/legal/cgv">conditions générales</Link> et la <Link className="vv-link" href="/legal/confidentialite">politique de confidentialité</Link></span>
+          <span>J’accepte les <Link className="vv-link" href="/legal/cgu">conditions d’utilisation</Link> (et les <Link className="vv-link" href="/legal/cgv">CGV</Link> pour les agences) et la <Link className="vv-link" href="/legal/confidentialite">politique de confidentialité</Link></span>
         </label>
         {errors.terms && <p className="vv-error" role="alert">{errors.terms}</p>}
       </div>
       <button className="vv-btn vv-btn--primary vv-btn--block" type="submit">Créer mon compte <Icon name="arrow" size={16} /></button>
-      <div className="vv-split">ou continuer avec</div>
-      <div className="vv-social">
-        <button className="vv-btn" disabled title="Bientôt disponible" type="button">Google</button>
-        <button className="vv-btn" disabled title="Bientôt disponible" type="button">Apple</button>
-      </div>
       <p className="vv-demo-note" style={{ marginTop: 16 }}>Version de démonstration : aucun compte n’est réellement créé.</p>
     </form>
   );

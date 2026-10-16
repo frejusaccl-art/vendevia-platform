@@ -7,7 +7,9 @@ export type Section = { title: string; body: string[] };
 export const legalLinks = [
   { slug: "confidentialite", label: "Confidentialité" },
   { slug: "mentions-legales", label: "Mentions légales" },
+  { slug: "cgu", label: "CGU" },
   { slug: "cgv", label: "CGV" },
+  { slug: "cookies", label: "Cookies" },
   { slug: "faq", label: "FAQ" },
 ] as const;
 
@@ -39,7 +41,7 @@ export function InfoPage({
         {updated && <p className="updated">{updated}</p>}
         {intro && <p className="vv-muted" style={{ marginBottom: 22 }}>{intro}</p>}
         {draftNotice && (
-          <p className="vv-demo-note">Texte de démonstration : à faire relire et compléter par un juriste avant la mise en ligne.</p>
+          <p className="vv-demo-note">Les champs entre crochets (identité de l’éditeur) sont à renseigner dans src/lib/company.ts avant la mise en ligne.</p>
         )}
         {sections && (
           <div className="vv-accordion">

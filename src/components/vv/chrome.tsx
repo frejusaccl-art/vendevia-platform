@@ -106,7 +106,9 @@ export function VvFooter({ withBanner = false }: { withBanner?: boolean }) {
               <ul>
                 <li><Link href="/legal/mentions-legales">Mentions légales</Link></li>
                 <li><Link href="/legal/confidentialite">Politique de confidentialité</Link></li>
+                <li><Link href="/legal/cgu">CGU</Link></li>
                 <li><Link href="/legal/cgv">CGV</Link></li>
+                <li><Link href="/legal/cookies">Cookies</Link></li>
                 <li><Link href="/legal/faq">FAQ</Link></li>
                 <li><Link href="/avis">Avis et témoignages</Link></li>
                 <li><Link href="/avis#donner-mon-avis">Laisser un avis</Link></li>

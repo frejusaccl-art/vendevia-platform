@@ -69,7 +69,7 @@ export const demoPerformance = {
   source: "Simulation interne — données non réelles",
 };
 
-export const demoCredits = { balance: 34, validity: "valables 12 mois", used30d: 12 };
+export const demoCredits = { balance: 120, validity: "valables 12 mois · 1 crédit = 1 € HT", used30d: 85 };
 
 export const demoReplacements = [
   { id: "PV-0187", name: "Marc D.", reason: "Numéro injoignable", status: "Remplacé", tone: "ok" },

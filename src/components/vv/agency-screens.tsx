@@ -9,6 +9,7 @@ import {
   projectsToCsv, stageLabels, stageOrder, type DemoOpportunity, type StageId,
 } from "@/lib/agency-demo";
 import type { AgencySection } from "./agency-nav";
+import { CREDIT_VALUE_EUR, offers } from "@/lib/pricing";
 
 const tone = (s: StageId) => (s === "nouveau" ? "todo" : s === "mandat" || s === "confirme" ? "ok" : "contact");
 const Stage = ({ stage }: { stage: StageId }) => <span className={`vv-status vv-status--${tone(stage)}`}>{stageLabels[stage]}</span>;
@@ -235,6 +236,19 @@ function Credits() {
         <div className="vv-kpi"><span>Crédits restants</span><strong>{demoCredits.balance}</strong><small>{demoCredits.validity}</small></div>
         <div className="vv-kpi"><span>Utilisés (30 jours)</span><strong>{demoCredits.used30d}</strong><small>exemple</small></div>
       </div>
+      <section className="vv-panel" style={{ marginBottom: 18 }}>
+        <div className="vv-panel-head"><h2>Ce que vaut votre solde</h2></div>
+        <div className="vv-table-wrap">
+          <table className="vv-table">
+            <thead><tr><th>Service</th><th>Crédits</th><th>Valeur</th><th>Avec {demoCredits.balance} crédits</th></tr></thead>
+            <tbody>
+              {offers.map((o) => (
+                <tr key={o.name}><td>{o.name}</td><td>{o.credits}</td><td>{o.credits * CREDIT_VALUE_EUR} € HT</td><td>{Math.floor(demoCredits.balance / o.credits)}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
       <section className="vv-panel">
         <div className="vv-panel-head"><h2>Acheter des crédits</h2></div>
         <p>Consultez les offres et les packs sur la page Tarifs. Aucun paiement n’est disponible dans cette version de démonstration.</p>

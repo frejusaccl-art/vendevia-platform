@@ -4,9 +4,7 @@ Le nouveau produit Vendevia, construit à partir du document maître. Il organis
 
 ## État
 
-**Bloc 0 — socle technique, identité et séparation.**
-
-Le prototype Webdev existant n’est pas la base de ce projet. Il reste séparé comme référence visuelle.
+Front-end unifié : **un seul style (celui de la maquette : vert profond, crème, titres en serif)** pour tout le site. Toutes les données sont des données de démonstration ; authentification, paiement et base de données relèvent du Bloc 9.
 
 ## Développement
 
@@ -16,12 +14,18 @@ pnpm lint
 pnpm build
 ```
 
-## Routes du Bloc 0
+## Routes
 
-- `/` — entrée publique et séparation des deux univers
-- `/maison` — aperçu du dossier vivant propriétaire
-- `/desk` — aperçu de la table de pilotage agence
-- `/backoffice` — point d’entrée du back-office
-- `/api/health` — état technique
+- `/` — accueil · `/tarifs` · `/a-propos` · `/contact` · `/legal/{confidentialite,mentions-legales,cgv,faq}`
+- `/proprietaire/projet` — formulaire propriétaire en 9 étapes · `/proprietaire/tableau-de-bord`
+- `/agence` — vue d’ensemble ; `/agence/{leads,a-traiter,pipeline,rendez-vous,equipes,credits,qualite,rapports,documents,parametres}` ; `/agence/dossier/[id]`
+- `/connexion` · `/inscription`
+- `/avis` — avis clients et agences (formulaire + liste)
+- `/backoffice` · `/backoffice/avis` — modération (jeton `AVIS_ADMIN_TOKEN`)
+- `/api/avis`, `/api/avis/moderation`, `/api/health`
 
-Les données visibles sont explicitement des données de démonstration. Les flux métier, la base, l’authentification, l’attribution, les notifications et les intégrations seront construits dans les blocs suivants, après validation visuelle.
+Les anciennes routes (`/maison/*`, `/desk/*`, `/faq`, `/cgv`…) redirigent vers les nouvelles (voir `next.config.ts`).
+
+## Avis partagés
+
+Sans configuration, les avis restent dans le navigateur (démo). Pour qu’ils soient visibles par tous, définir `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` et `AVIS_ADMIN_TOKEN` (voir `.env.example`). Chaque avis est alors relu sur `/backoffice/avis` avant publication ; anti-spam : champ piège et 5 envois/heure/IP.

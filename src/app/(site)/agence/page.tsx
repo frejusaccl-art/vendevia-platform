@@ -1,33 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AppShell, type SideItem, type TabItem } from "@/components/vv/app-shell";
+import { AppShell } from "@/components/vv/app-shell";
+import { agencyItems, agencyTabs, agencyTopLinks, agencyUser } from "@/components/vv/agency-nav";
 import { ReviewNudge } from "@/components/vv/reviews";
 
 export const metadata: Metadata = {
   title: "Espace agence — Vendevia",
   description: "Tableau de bord agence : nouveaux leads, leads à traiter, rendez-vous et crédits.",
 };
-
-const items: SideItem[] = [
-  { label: "Vue d’ensemble", icon: "grid", href: "/agence", current: true },
-  { label: "Mes leads", icon: "users", href: "#leads" },
-  { label: "À traiter", icon: "inbox" },
-  { label: "Rendez-vous", icon: "calendar", href: "#agenda" },
-  { label: "Mes équipes", icon: "user" },
-  { label: "Crédits et offres", icon: "card", href: "/tarifs" },
-  { label: "Qualité et remplacements", icon: "refresh" },
-  { label: "Rapports", icon: "chart" },
-  { label: "Contrat et documents", icon: "file" },
-  { label: "Paramètres", icon: "sliders" },
-  { label: "Aide", icon: "help", href: "/legal/faq" },
-];
-
-const tabs: TabItem[] = [
-  { label: "Accueil", icon: "grid", href: "/agence", current: true },
-  { label: "Leads", icon: "users", href: "#leads" },
-  { label: "Rendez-vous", icon: "calendar", href: "#agenda" },
-  { label: "Plus", icon: "list", href: "/tarifs" },
-];
 
 const kpis = [
   { label: "Nouveaux leads", value: "12", delta: "+2 depuis hier" },
@@ -63,10 +43,10 @@ export default function AgencyPage() {
 
   return (
     <AppShell
-      items={items}
-      tabs={tabs}
-      topLinks={[{ label: "Fiches leads", href: "#leads" }, { label: "Suivi", href: "#agenda" }, { label: "Agence Horizon", href: "/agence" }]}
-      user={{ name: "Agence Horizon", role: "Responsable", initials: "AH" }}
+      items={agencyItems("overview")}
+      tabs={agencyTabs("overview")}
+      topLinks={agencyTopLinks}
+      user={agencyUser}
     >
       <main id="top">
         <div className="vv-greet">
@@ -90,7 +70,7 @@ export default function AgencyPage() {
           <section aria-labelledby="leads-title" className="vv-panel" id="leads">
             <div className="vv-panel-head">
               <h2 id="leads-title">Leads récents</h2>
-              <Link href="/desk">Voir tout</Link>
+              <Link href="/agence/leads">Voir tout</Link>
             </div>
             <div className="vv-table-wrap">
               <table className="vv-table">
@@ -104,7 +84,7 @@ export default function AgencyPage() {
                       <td>{l.type}</td>
                       <td>{l.budget}</td>
                       <td><span className={`vv-status vv-status--${l.tone}`}>{l.status}</span></td>
-                      <td><Link className="vv-link" href="/desk/dossier">Voir</Link></td>
+                      <td><Link className="vv-link" href="/agence/leads">Voir</Link></td>
                     </tr>
                   ))}
                 </tbody>
@@ -115,7 +95,7 @@ export default function AgencyPage() {
           <section aria-labelledby="agenda-title" className="vv-panel" id="agenda">
             <div className="vv-panel-head">
               <h2 id="agenda-title">Mes rendez-vous</h2>
-              <Link href="#agenda">Voir tout</Link>
+              <Link href="/agence/rendez-vous">Voir tout</Link>
             </div>
             <div className="vv-cal-head"><span>Octobre 2026</span></div>
             <div aria-label="Calendrier d’octobre 2026" className="vv-cal">

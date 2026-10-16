@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useId, useState } from "react";
 import { Icon } from "./icons";
-import { addReview, fmtAverage, roleLabel, summarize, TEXT_MAX, TEXT_MIN, useReviews, validateReview } from "@/lib/reviews";
+import { fmtAverage, roleLabel, submitReview, summarize, TEXT_MAX, TEXT_MIN, useReviews, validateReview } from "@/lib/reviews";
 import type { Review, ReviewErrors, ReviewRole } from "@/lib/reviews";
 
 const STAR = "M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8L12 2.5z";
@@ -87,25 +87,42 @@ export function ReviewForm({ defaultRole, lockRole = false }: { defaultRole?: Re
   const [text, setText] = useState("");
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<ReviewErrors>({});
-  const [done, setDone] = useState<Review | null>(null);
+  const [done, setDone] = useState<{ name: string; role: ReviewRole; pending: boolean } | null>(null);
+  const [website, setWebsite] = useState(""); // champ piège anti-robots, invisible
+  const [submitting, setSubmitting] = useState(false);
+  const [failure, setFailure] = useState("");
 
   const clear = (k: keyof ReviewErrors) => setErrors((p) => (p[k] ? { ...p, [k]: undefined } : p));
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (submitting) return;
     const errs = validateReview({ role, name, rating, text, consent });
     setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-    setDone(addReview({ role, name, rating, text, consent }));
-    setName(""); setRating(0); setText(""); setConsent(false);
+    setFailure("");
+    if (Object.keys(errs).length > 0 || !role) return;
+    setSubmitting(true);
+    try {
+      const res = await submitReview({ role, name, rating, text, consent }, website);
+      setDone({ name: name.trim(), role, pending: res.status === "pending" });
+      setName(""); setRating(0); setText(""); setConsent(false);
+    } catch (err) {
+      setFailure(err instanceof Error && err.message === "rate"
+        ? "Vous avez envoyé plusieurs avis récemment. Réessayez dans une heure."
+        : "L’envoi a échoué. Vérifiez votre connexion et réessayez.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (done) {
     return (
       <div className="vv-form-ok" role="status">
-        <strong>Merci {done.name}, votre avis est publié.</strong>
+        <strong>{done.pending ? `Merci ${done.name}, votre avis est bien reçu.` : `Merci ${done.name}, votre avis est publié.`}</strong>
         <p>Il aide d’autres {done.role === "agence" ? "agences" : "propriétaires"} à choisir en confiance.</p>
-        <p className="vv-form-ok-note">Démonstration : l’avis est enregistré sur cet appareil. Il sera visible par tous les visiteurs dès que la base de données partagée sera branchée.</p>
+        <p className="vv-form-ok-note">{done.pending
+          ? "Notre équipe le relit rapidement (contenu respectueux, pas de coordonnées) avant de le rendre visible par tous."
+          : "Démonstration : l’avis est enregistré sur cet appareil. Il sera visible par tous les visiteurs dès que la base de données partagée sera branchée."}</p>
         <div className="vv-form-ok-actions">
           <Link className="vv-btn vv-btn--primary vv-btn--sm" href="/avis">Voir les avis</Link>
           <button type="button" className="vv-btn vv-btn--outline vv-btn--sm" onClick={() => setDone(null)}>Écrire un autre avis</button>
@@ -117,6 +134,10 @@ export function ReviewForm({ defaultRole, lockRole = false }: { defaultRole?: Re
   const count = text.trim().length;
   return (
     <form className="vv-review-form" onSubmit={submit} noValidate>
+      {failure && <p className="vv-error" role="alert">{failure}</p>}
+      <div aria-hidden="true" style={{ height: 0, left: -9999, overflow: "hidden", position: "absolute" }}>
+        <label>Ne pas remplir<input autoComplete="off" name="website" onChange={(e) => setWebsite(e.target.value)} tabIndex={-1} value={website} /></label>
+      </div>
       {Object.keys(errors).filter((k) => errors[k as keyof ReviewErrors]).length > 0 && <p className="vv-error" role="alert">Corrigez les champs signalés pour publier votre avis.</p>}
 
       {!lockRole && (
@@ -169,7 +190,7 @@ export function ReviewForm({ defaultRole, lockRole = false }: { defaultRole?: Re
         {errors.consent && <span className="vv-error">{errors.consent}</span>}
       </div>
 
-      <button type="submit" className="vv-btn vv-btn--primary vv-btn--block">Publier mon avis</button>
+      <button type="submit" className="vv-btn vv-btn--primary vv-btn--block" disabled={submitting}>{submitting ? "Envoi…" : "Publier mon avis"}</button>
     </form>
   );
 }

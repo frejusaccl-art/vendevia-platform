@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { MotionDirector } from "@/components/motion-director";
 
 export const metadata: Metadata = {
-  title: "Vendevia — Le pipeline vendeur en mouvement",
+  title: "Vendevia — Vendez sereinement, avec les bonnes agences",
   description:
-    "Vendevia transforme chaque projet vendeur en prochaine action claire, du premier clic au mandat.",
+    "Vendevia met en relation les propriétaires avec des agences immobilières sélectionnées, avec leur accord et sans engagement.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fr">
-      <body><MotionDirector />{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

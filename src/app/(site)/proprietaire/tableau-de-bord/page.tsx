@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AppShell, type SideItem, type TabItem } from "@/components/vv/app-shell";
+import { AppShell } from "@/components/vv/app-shell";
+import { ownerItems, ownerTabs, ownerTopLinks, ownerUser } from "@/components/vv/owner-nav";
 import { Icon } from "@/components/vv/icons";
 import { ReviewNudge } from "@/components/vv/reviews";
 
@@ -8,25 +9,6 @@ export const metadata: Metadata = {
   title: "Mon espace — Vendevia",
   description: "Suivez l’avancement de votre projet de vente, votre agence et vos prochains rendez-vous.",
 };
-
-const base = "/proprietaire/tableau-de-bord";
-
-const items: SideItem[] = [
-  { label: "Tableau de bord", icon: "grid", href: base, current: true },
-  { label: "Mon projet", icon: "home", href: "#projet" },
-  { label: "Mes informations", icon: "user", href: "/proprietaire/projet" },
-  { label: "Suivi de ma demande", icon: "chart", href: "#suivi" },
-  { label: "Mes rendez-vous", icon: "calendar", href: "#rdv" },
-  { label: "Mes messages", icon: "message" },
-  { label: "Aide", icon: "help", href: "/legal/faq" },
-];
-
-const tabs: TabItem[] = [
-  { label: "Accueil", icon: "grid", href: base, current: true },
-  { label: "Projet", icon: "home", href: "#projet" },
-  { label: "Rendez-vous", icon: "calendar", href: "#rdv" },
-  { label: "Aide", icon: "help", href: "/legal/faq" },
-];
 
 const progress = [
   { label: "Projet créé", date: "12 oct.", state: "done" },
@@ -38,10 +20,10 @@ const progress = [
 export default function OwnerDashboardPage() {
   return (
     <AppShell
-      items={items}
-      tabs={tabs}
-      topLinks={[{ label: "Mon projet", href: "#projet" }, { label: "Suivi", href: "#suivi" }]}
-      user={{ name: "Sophie L.", role: "Propriétaire", initials: "SL" }}
+      items={ownerItems("home")}
+      tabs={ownerTabs("home")}
+      topLinks={ownerTopLinks}
+      user={ownerUser}
     >
       <main id="top">
         <div className="vv-greet">

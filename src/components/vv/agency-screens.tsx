@@ -252,7 +252,7 @@ function Credits() {
       <section className="vv-panel">
         <div className="vv-panel-head"><h2>Acheter des crédits</h2></div>
         <p>Consultez les offres et les packs sur la page Tarifs. Aucun paiement n’est disponible dans cette version de démonstration.</p>
-        <p style={{ marginTop: 14 }}><Link className="vv-btn vv-btn--sm" href="/tarifs">Voir les tarifs</Link></p>
+        <p style={{ marginTop: 14 }}><Link className="vv-btn vv-btn--sm" href="/agence/acheter">Acheter des crédits</Link> <Link className="vv-btn vv-btn--outline vv-btn--sm" href="/tarifs">Voir les tarifs</Link></p>
       </section>
     </>
   );
@@ -311,7 +311,7 @@ function Documents() {
           <li key={d.name}>
             <Icon name="file" size={18} />
             <div><strong>{d.name}</strong><small className="vv-muted">{"href" in d ? "Page du site" : d.meta}</small></div>
-            {"href" in d ? <Link className="vv-link" href={d.href}>Consulter</Link> : <span className="vv-muted">Bientôt</span>}
+            {"href" in d ? <Link className="vv-link" href={d.href}>Consulter</Link> : <span className="vv-muted">Sur demande</span>}
           </li>
         ))}
       </ul>

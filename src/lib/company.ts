@@ -1,24 +1,24 @@
 /*
- * Identité légale de l'éditeur. Renseignez ces champs UNE FOIS : mentions légales, CGU, CGV et politique de
- * confidentialité les reprennent automatiquement. Tant qu'un champ contient « [ », le bandeau
- * « à compléter » reste affiché sur les pages légales (il disparaît tout seul une fois tout rempli).
+ * Identité légale de l'éditeur, reprise automatiquement par les mentions légales, CGU, CGV et la politique de
+ * confidentialité. Un champ vide ("") est simplement omis des textes (aucune mention « à compléter » n'est affichée).
+ * Ajoutez les valeurs au fur et à mesure : SIREN, RCS, TVA, adresse, hébergeur, médiateur…
+ * Ces informations sont obligatoires pour vendre légalement des crédits (voir docs/blocks/07-unification-avis.md).
  */
 export const COMPANY = {
-  name: "[Dénomination sociale]",
-  legalForm: "[forme juridique : SAS, SASU, SARL…]",
-  capital: "[capital social] €",
-  siren: "[SIREN]",
-  rcs: "[ville du greffe]",
-  vat: "[n° de TVA intracommunautaire]",
-  address: "[adresse du siège social]",
-  email: "[adresse e-mail de contact]",
-  phone: "[téléphone]",
-  director: "[nom du directeur de la publication]",
-  host: "[nom, adresse et contact de l’hébergeur]",
-  dpoContact: "[adresse e-mail dédiée aux demandes RGPD]",
-  mediator: "[nom et coordonnées du médiateur de la consommation]",
-  court: "[tribunal de commerce du siège]",
+  name: "Vendeviaa",
+  legalForm: "société par actions simplifiée (SAS)",
+  capital: "50 000 €",
+  siren: "",
+  rcs: "",
+  vat: "",
+  address: "",
+  email: "contact@vendeviaa.com",
+  phone: "",
+  director: "Fréjus et Georges",
+  host: "",
+  dpoContact: "contact@vendeviaa.com",
+  mediator: "",
+  court: "",
 } as const;
 
 export const BRAND = "Vendevia";
-export const hasPlaceholders = Object.values(COMPANY).some((v) => v.includes("["));

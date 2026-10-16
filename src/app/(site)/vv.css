@@ -491,3 +491,25 @@
   .vv-a-grid2, .vv-a-dl { grid-template-columns: 1fr; }
   .vv-a-bar { grid-template-columns: 110px 1fr 30px; }
 }
+
+/* Espace propriétaire : suivi et messages */
+.vv-a-timeline { display: grid; gap: 18px; }
+.vv-a-timeline li { align-items: flex-start; display: flex; gap: 14px; }
+.vv-a-timeline .dot { align-items: center; background: var(--vv-card); border: 2px solid var(--vv-line-strong); border-radius: 999px; color: #fff; display: inline-flex; flex: none; height: 28px; justify-content: center; width: 28px; }
+.vv-a-timeline .done .dot { background: var(--vv-green); border-color: var(--vv-green); }
+.vv-a-timeline .current .dot { border-color: var(--vv-green); box-shadow: 0 0 0 5px var(--vv-green-soft); }
+.vv-a-timeline p { color: var(--vv-muted); font-size: 13px; }
+.vv-a-chat { display: grid; gap: 10px; }
+.vv-a-chat .bubble { border-radius: 14px; display: grid; gap: 4px; max-width: 78%; padding: 10px 14px; }
+.vv-a-chat .bubble small { color: var(--vv-muted); font-size: 11px; }
+.vv-a-chat .agence { background: var(--vv-green-soft); justify-self: start; }
+.vv-a-chat .moi { background: var(--vv-paper); border: 1px solid var(--vv-line); justify-self: end; }
+
+/* Achat de crédits */
+.vv-a-radios { display: grid; gap: 8px; }
+.vv-a-radio { align-items: center; border: 1px solid var(--vv-line-strong); border-radius: 12px; cursor: pointer; display: flex; gap: 12px; padding: 12px 14px; }
+.vv-a-radio.on { background: var(--vv-green-soft); border-color: var(--vv-green); }
+.vv-a-radio span { display: grid; flex: 1; }
+.vv-a-sum { display: grid; gap: 8px; }
+.vv-a-sum div { display: flex; justify-content: space-between; }
+.vv-a-sum .total { border-top: 1px solid var(--vv-line); font-weight: 700; padding-top: 8px; }
